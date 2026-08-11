@@ -237,6 +237,21 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 
   /* Checklist single column */
   .checklist ul { grid-template-columns: 1fr; }
+
+  /* Detail cards — 休息日 & 里程碑 */
+  .section-title { font-size: 16px; }
+  .detail-grid { display: flex; flex-direction: column; gap: 8px; }
+  .detail-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px; font-size: 13px;
+  }
+  .detail-card .date-header { font-weight: 700; font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .detail-card .line { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+  .detail-card .line b { color: var(--text); }
+  .detail-card.rest { border-color: var(--green); background: var(--green-bg); }
+  .detail-card.half-rest { border-color: var(--orange); background: var(--orange-bg); }
+  .detail-card.milestone { border-color: var(--red); background: var(--red-bg); }
+  .detail-card.nfc { border-color: var(--blue); background: var(--blue-bg); }
 }
 
 /* ═══════════════ DESKTOP-ONLY / MOBILE-ONLY ═══════════════ */

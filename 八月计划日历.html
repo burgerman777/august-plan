@@ -79,6 +79,7 @@ header .subtitle { color: var(--text-secondary); font-size: 14px; }
 .legend span { display: flex; align-items: center; gap: 6px; }
 .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 .dot.main      { background: var(--accent); }
+.dot.workout   { background: var(--orange); }
 .dot.express   { background: var(--purple); }
 .dot.half-rest { background: var(--orange); }
 .dot.full-rest { background: var(--green); }
@@ -149,6 +150,8 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
   .cal-table td.full-rest-cell { border-color: var(--green); background: var(--green-bg); }
   .cal-table .date-num { font-size: 14px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
   .cal-table .event-line { font-size: 10.5px; color: var(--text-secondary); margin-top: 2px; line-height: 1.45; }
+  .cal-table .workout-line { color: var(--orange); font-weight: 600; }
+  .cal-table .express-line { color: var(--purple); }
   .cal-table .status-line { font-size: 9.5px; font-weight: 700; margin-top: 3px; }
   .cal-table .status-line.s-ok { color: var(--green); }
   .cal-table .status-line.s-warn { color: var(--orange); }
@@ -269,8 +272,8 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 <!-- ⏸ PAUSE BANNER -->
 <div class="pause-banner">
   <span class="icon">⏸️</span>
-  <span class="msg">🔄 计划已更新 — AI Agent 阶段一天完成！</span>
-  <span class="sub">掌厨 Agent 已上线 · 启动 Prompt 工程 + 健身恢复 · 自媒体延至开学</span>
+  <span class="msg">🔄 计划已更新 — Prompt 工程系统化完成！</span>
+  <span class="sub">10概念+台球厅5/5通过+Meta-Prompt · 启动居家训练 Push/Pull/Legs · RAG 8/14启动</span>
 </div>
 
 <header>
@@ -290,12 +293,32 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 <!-- LEGEND -->
 <div class="legend">
   <span class="legend-main"><i class="dot main"></i> 主线任务</span>
+  <span class="legend-workout"><i class="dot workout"></i> 🏋️ 健身</span>
   <span class="legend-express"><i class="dot express"></i> 表达练习</span>
   <span class="legend-half"><i class="dot half-rest"></i> 半休日</span>
   <span class="legend-full"><i class="dot full-rest"></i> 纯休日</span>
   <span class="legend-milestone"><i class="dot milestone"></i> 里程碑</span>
   <span><i class="dot done"></i> 已完成</span>
   <span><i class="dot paused"></i> 暂停</span>
+</div>
+
+<!-- 🍚 DIET BANNER -->
+<div style="background:linear-gradient(135deg, rgba(251,146,60,0.15), rgba(74,222,128,0.1)); border:1px solid var(--orange); border-radius:var(--radius); padding:14px 18px; margin-bottom:18px;">
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <span style="font-size:20px;">🍚</span>
+    <b style="color:var(--orange);">每日饮食清单</b>
+    <span style="color:var(--text-secondary);font-size:13px;">— 外胚型增肌 · 不吃完 = 白练</span>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:13px;">🥚 <b>早餐</b> 3蛋+2包子+豆浆</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:13px;">🍗 <b>午餐</b> 1荤+1素+2两饭</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:13px;">🥩 <b>晚餐</b> 1荤+1素+2两饭</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:13px;">🍌 <b>加餐</b> 香蕉+坚果+面包花生酱+牛奶</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:13px;">💧 <b>3L水</b></span>
+  </div>
+  <div style="margin-top:8px;font-size:11px;color:var(--text-secondary);">
+    荤菜优先：<b>鸡腿·红烧肉·排骨·炸鸡排</b>｜避开：凉拌黄瓜·水煮白菜｜<a href="../外形管理/04-身材管理/8月居家训练计划.md" style="color:var(--accent);">📋 完整方案</a>
+  </div>
 </div>
 
 <!-- DAILY TEMPLATE -->
@@ -341,7 +364,8 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 <footer>
   <p>💡 累了、加班了、状态不好 → <b>做 30 分钟就收工</b>，比不做强一百倍。</p>
   <p style="margin-top:4px;">别让完美主义杀死行动力。</p>
-  <p style="margin-top:8px;color:var(--green);">✅ AI Agent 阶段完成 · 掌厨已上线 · 明天 8/11 启动 Prompt 工程 + 健身</p>
+  <p style="margin-top:8px;color:var(--green);">✅ Prompt 工程完成 · 居家训练 Push/Pull/Legs 已启动 · 8/14 进 RAG</p>
+  <p style="margin-top:4px;"><a href="../外形管理/04-身材管理/8月居家训练计划.md" style="color:var(--accent);">📋 完整训练计划（食堂饮食 + 45min 动作表）</a></p>
   <p class="timestamp" id="timestamp"></p>
 </footer>
 
@@ -349,7 +373,7 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
      DATA — 改计划只改这里
      ═══════════════════════════════════════════════ -->
 <script>
-const WEEKS = ['W1 搭架子', 'W2 启动 ⏸', 'W3 巩固', '收尾周'];
+const WEEKS = ['W1 搭架子', 'W2 启动 ⏸', 'W3 RAG+训练', '收尾周'];
 
 const DAYS = [
   // Week 1: 搭架子 ✅
@@ -379,57 +403,57 @@ const DAYS = [
   { date:11, wd:'周二', w:1, s:'done',
     tags:['🏋️健身','AI'], main:'Prompt工程系统化', express:'五要素+ Few-shot + CoT',
     result:'✅ 整理+网页+NFC+课程+健身·全完成', rClass:'s-ok' },
-  { date:12, wd:'周三', w:1, s:'',
-    tags:['AI','表达'], main:'Prompt 工程深入', express:'方法论写作',
-    result:'', rClass:'' },
+  { date:12, wd:'周三', w:1, s:'done',
+    tags:['AI'], main:'Prompt工程系统化 ✅', express:'', workout:'Push 胸肩三头',
+    result:'✅ 10概念全·Meta-Prompt·课程全同步', rClass:'s-ok' },
   { date:13, wd:'周四', w:1, s:'',
-    tags:['AI','表达'], main:'Prompt 实战', express:'优化对话',
+    tags:['AI'], main:'Prompt收尾 + RAG预习', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
   { date:14, wd:'周五', w:1, s:'', type:'half-rest', tags:['半休'],
-    main:'🏃 健身 → 📊 两周复盘 → 🤖 RAG 入门', express:'🎤 朗读 15min',
+    main:'RAG 入门', express:'🎤 朗读 15min', workout:'Legs 腿+核心',
     result:'', rClass:'' },
   { date:15, wd:'周六', w:1, s:'', type:'full-rest', tags:['纯休'],
-    main:'彻底放松 🧘', express:'',
+    main:'彻底放松 🧘', express:'', workout:'Push 胸肩三头',
     result:'', rClass:'' },
 
-  // Week 3: 巩固
+  // Week 3: RAG+训练
   { date:16, wd:'周日', w:2, s:'',
-    tags:['自媒体','表达'], main:'写第二篇完整内容', express:'默念跟读好文章',
+    tags:['RAG'], main:'Embedding + 向量数据库', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
   { date:17, wd:'周一', w:2, s:'',
-    tags:['AI','表达'], main:'动手做 Agent 小 demo', express:'默念 demo 功能介绍',
+    tags:['RAG'], main:'Chunking + 召回策略', express:'', workout:'Legs 腿+核心',
     result:'', rClass:'' },
-  { date:18, wd:'周二', w:2, s:'milestone', tags:['🚀发布','表达'],
-    main:'自媒体：🔴 发布第二篇', express:'默写"你和别人有什么不同"',
+  { date:18, wd:'周二', w:2, s:'',
+    tags:['RAG'], main:'实战：掌厨159菜谱接入', express:'', workout:'Push 胸肩三头',
     result:'', rClass:'' },
   { date:19, wd:'周三', w:2, s:'',
-    tags:['闲鱼','表达'], main:'迭代优化，改标题/图', express:'30秒默念"我是做什么的"',
+    tags:['RAG'], main:'实战：检索 + 重排序', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
   { date:20, wd:'周四', w:2, s:'',
-    tags:['AI','表达'], main:'完善 demo', express:'默写一段推销话术',
+    tags:['RAG'], main:'收尾 + 企业知识库方案', express:'', workout:'Legs 腿+核心',
     result:'', rClass:'' },
   { date:21, wd:'周五', w:2, s:'', type:'half-rest', tags:['半休'],
-    main:'🏃 健身 → 📊 整体复盘 → 📝 九月规划', express:'🎤 朗读 15min',
+    main:'综合练习', express:'🎤 朗读 15min', workout:'Push 胸肩三头',
     result:'', rClass:'' },
   { date:22, wd:'周六', w:2, s:'', type:'full-rest', tags:['纯休'],
-    main:'彻底放松 🧘', express:'',
+    main:'彻底放松 🧘', express:'', workout:'',
     result:'', rClass:'' },
 
   // 收尾周
   { date:23, wd:'周日', w:3, s:'',
-    tags:['自媒体','表达'], main:'第三篇大纲', express:'录 1min 自我介绍，回听',
+    tags:['项目'], main:'项目打磨：掌厨/NFC/日历', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
   { date:24, wd:'周一', w:3, s:'',
-    tags:['AI','表达'], main:'推进 demo', express:'默述本周 3 个知识点',
+    tags:['项目'], main:'项目打磨：作品整理', express:'', workout:'Legs 腿+核心',
     result:'', rClass:'' },
   { date:25, wd:'周二', w:3, s:'',
-    tags:['闲鱼','表达'], main:'维护+回复咨询', express:'默写完整销售对话',
+    tags:['闲鱼'], main:'闲鱼维护 + 九月规划', express:'', workout:'Push 胸肩三头',
     result:'', rClass:'' },
   { date:26, wd:'周三', w:3, s:'',
-    tags:['总结','表达'], main:'整理九月详细学习计划', express:'写"这 20 天我做到了什么"',
+    tags:['总结'], main:'整理九月学习计划', express:'', workout:'Pull 背+二头（最后一练）',
     result:'', rClass:'' },
   { date:27, wd:'周四', w:3, s:'milestone', tags:['🎉离职'],
-    main:'不安排任何任务 · 给自己仪式感 · 回顾 20 天成果', express:'',
+    main:'休息 · 给自己仪式感 · 回顾 20 天', express:'', workout:'',
     result:'', rClass:'' },
 ];
 
@@ -442,7 +466,7 @@ const REST_DAYS = [
     '彻底放松，想干嘛干嘛','不碰任何任务'
   ], outcome:'⚠️ 实际：补了自媒体底层逻辑学习', oc:'var(--orange)' },
   { date:14, wd:'周五', type:'half', emoji:'🟡', results:[
-    '🏃 <b>健身</b>','📊 <b>下午</b>：两周复盘 + 自媒体第二篇大纲','🎤 <b>傍晚</b>：朗读 15 分钟','🌙 <b>晚上</b>：自由安排'
+    '🏋️ <b>Legs 腿+核心</b>：深蹲4×15→保加利亚蹲→臀桥→静蹲→平板→登山跑','🤖 <b>下午</b>：RAG 入门 — Embedding + 向量搜索','🎤 <b>傍晚</b>：朗读 15 分钟','🌙 <b>晚上</b>：自由安排'
   ], outcome:'', oc:'' },
   { date:15, wd:'周六', type:'full', emoji:'🟢', results:[
     '彻底放松 🧘'
@@ -459,8 +483,8 @@ const REST_DAYS = [
 const MILESTONES = [
   { emoji:'✅', dt:'8/10 一', tags:'', cls:'rest',
     lines:['🤖 <b>AI Agent 阶段全部完成</b>','4天课程一天速通，掌厨Agent上线','<span style="color:var(--green)">✅ 超前完成</span>'] },
-  { emoji:'🚀', dt:'8/11 起', tags:'', cls:'',
-    lines:['<b>Prompt 工程 + RAG</b>','AI 学习加速推进，健身同步恢复'] },
+  { emoji:'🏋️', dt:'8/12 起', tags:'', cls:'',
+    lines:['<b>居家训练 Push/Pull/Legs</b>','每天45min · 臂力棒+拉力器+自重','食堂增肌餐：3蛋+2荤+4饭+加餐','<span style="color:var(--green)">→ 8/27 离职日</span>'] },
   { emoji:'🎉', dt:'8/27 四', tags:'', cls:'milestone',
     lines:['<b>离职日</b>','不安排任务','给自己仪式感','回顾这 20 天的成果'] },
   { emoji:'🆕', dt:'8/9 日', tags:'', cls:'nfc',
@@ -547,8 +571,9 @@ function renderDesktop() {
 
       // Event lines
       let events = '';
-      if (d.main) events += `<div class="event-line">${d.main.includes('<b>') ? d.main : '<b>' + d.tags[0].replace('🏋️','').replace('🆕','') + '</b>：' + d.main}</div>`;
-      if (d.express) events += `<div class="event-line"><b>表达</b>：${d.express}</div>`;
+      if (d.main) events += `<div class="event-line">${d.main.includes('<b>') ? d.main : '<b>' + d.tags[0] + '</b>：' + d.main}</div>`;
+      if (d.workout) events += `<div class="event-line workout-line">🏋️ ${d.workout}</div>`;
+      if (d.express) events += `<div class="event-line express-line">🎤 ${d.express}</div>`;
 
       // Status
       let status = '';
@@ -616,8 +641,9 @@ function renderMobile() {
 
       // Lines
       let lines = [];
-      if (d.main) lines.push(d.main.includes('<b>') ? d.main : `<b>${d.tags[0].replace('🏋️','').replace('🆕','')}</b>：${d.main}`);
-      if (d.express) lines.push(`<b>表达</b>：${d.express}`);
+      if (d.main) lines.push(d.main.includes('<b>') ? d.main : `<b>${d.tags[0]}</b>：${d.main}`);
+      if (d.workout) lines.push(`<span style="color:var(--orange);font-weight:600;">🏋️ ${d.workout}</span>`);
+      if (d.express) lines.push(`<span style="color:var(--purple);">🎤 ${d.express}</span>`);
 
       // Status
       let statusHtml = '';

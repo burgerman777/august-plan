@@ -265,6 +265,57 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
   .desktop-only { display: none; }
   .mobile-only { display: block; }
 }
+
+/* ═══════════════ DAY DETAIL MODAL ═══════════════ */
+.cal-table td[data-date], .day-card[data-date] { cursor: pointer; }
+.card-progress { font-size: 11px; font-weight: 700; margin-top: 3px; color: var(--text-secondary); }
+
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: none; align-items: flex-start; justify-content: center;
+  z-index: 100; padding: 16px; overflow-y: auto;
+  backdrop-filter: blur(3px);
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  width: 100%; max-width: 480px; margin: 32px auto; padding: 20px;
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform:none; } }
+.modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.modal-head .title { font-size: 18px; font-weight: 700; line-height: 1.4; }
+.modal-head .title .tag { margin-right: 4px; }
+.modal-close { background: none; border: none; color: var(--text-secondary); font-size: 22px; cursor: pointer; line-height: 1; padding: 4px; flex-shrink: 0; }
+.modal-close:hover { color: var(--text); }
+
+.progress-bar { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 999px; transition: width 0.3s; }
+
+.modal-section { margin-bottom: 16px; }
+.modal-section h4 { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 600; }
+
+.task-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; cursor: pointer; transition: background 0.15s; }
+.task-item:hover { background: #1f2232; }
+.task-item .checkbox { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #fff; margin-top: 1px; transition: all 0.15s; }
+.task-item.done .checkbox { background: var(--green); border-color: var(--green); }
+.task-item .task-text { font-size: 14px; flex: 1; line-height: 1.5; }
+.task-item.done .task-text { text-decoration: line-through; color: var(--text-secondary); }
+.task-item .task-del { color: var(--text-secondary); font-size: 14px; cursor: pointer; padding: 0 2px; opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
+.task-item:hover .task-del { opacity: 1; }
+.task-item .task-del:hover { color: var(--red); }
+
+.empty-hint { color: var(--text-secondary); font-size: 13px; text-align: center; padding: 10px; }
+
+.note-input-row { display: flex; gap: 8px; }
+.note-input { flex: 1; background: #0f1117; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 14px; outline: none; }
+.note-input:focus { border-color: var(--accent); }
+.note-add { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 0 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.note-add:active { opacity: 0.8; }
+
+.sync-row { display: flex; gap: 8px; margin-top: 4px; }
+.sync-btn { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 9px; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+.sync-btn:hover { border-color: var(--accent); color: var(--text); }
 </style>
 </head>
 <body>
@@ -273,7 +324,7 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 <div class="pause-banner">
   <span class="icon">⏸️</span>
   <span class="msg">🔄 计划已更新 — Prompt 工程系统化完成！</span>
-  <span class="sub">10概念+台球厅5/5通过+Meta-Prompt · 启动居家训练 Push/Pull/Legs · RAG 8/14启动</span>
+  <span class="sub">10概念+台球厅5/5通过+Meta-Prompt · 启动居家训练 Push/Pull/Legs · RAG 已完成</span>
 </div>
 
 <header>
@@ -287,7 +338,7 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
   <div class="stat-card"><div class="num">5</div><div class="label">休息日</div></div>
   <div class="stat-card"><div class="num">40h</div><div class="label">总可用时间</div></div>
   <div class="stat-card"><div class="num">3</div><div class="label">核心线</div></div>
-  <div class="stat-card"><div class="num green">6</div><div class="label">已完成天</div></div>
+  <div class="stat-card"><div class="num green">8</div><div class="label">已完成天</div></div>
 </div>
 
 <!-- LEGEND -->
@@ -364,10 +415,41 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
 <footer>
   <p>💡 累了、加班了、状态不好 → <b>做 30 分钟就收工</b>，比不做强一百倍。</p>
   <p style="margin-top:4px;">别让完美主义杀死行动力。</p>
-  <p style="margin-top:8px;color:var(--green);">✅ Prompt 工程完成 · 居家训练 Push/Pull/Legs 已启动 · 8/14 进 RAG</p>
+  <p style="margin-top:8px;color:var(--green);">✅ Prompt 工程完成 · 居家训练 Push/Pull/Legs 已启动 · RAG 已完成（向量库+bge语义）</p>
   <p style="margin-top:4px;"><a href="训练计划.md" style="color:var(--accent);">📋 完整训练计划（食堂饮食 + 45min 动作表）</a></p>
   <p class="timestamp" id="timestamp"></p>
 </footer>
+
+<!-- ═══════════════ DAY DETAIL MODAL ═══════════════ -->
+<div class="modal-overlay" id="detail-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="title" id="modal-title"></div>
+      <button class="modal-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="modal-progress"></div></div>
+
+    <div class="modal-section">
+      <h4>📋 今日任务</h4>
+      <div id="modal-tasks"></div>
+    </div>
+
+    <div class="modal-section">
+      <h4>📝 我的记录</h4>
+      <div id="modal-notes"></div>
+      <div class="note-input-row">
+        <input class="note-input" id="note-input" placeholder="记一条…回车或点添加" onkeydown="if(event.key==='Enter')addNote()">
+        <button class="note-add" onclick="addNote()">添加</button>
+      </div>
+    </div>
+
+    <div class="sync-row">
+      <button class="sync-btn" onclick="exportData()">⬇️ 导出记录</button>
+      <button class="sync-btn" onclick="document.getElementById('import-file').click()">⬆️ 导入记录</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════
      DATA — 改计划只改这里
@@ -409,9 +491,9 @@ const DAYS = [
   { date:13, wd:'周四', w:1, s:'',
     tags:['AI'], main:'Prompt收尾 + RAG预习', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
-  { date:14, wd:'周五', w:1, s:'', type:'half-rest', tags:['半休'],
+  { date:14, wd:'周五', w:1, s:'done', type:'half-rest', tags:['半休'],
     main:'RAG 入门', express:'🎤 朗读 15min', workout:'Legs 腿+核心',
-    result:'', rClass:'' },
+    result:'✅ RAG全完成·bge语义+混合检索·健身Legs', rClass:'s-ok' },
   { date:15, wd:'周六', w:1, s:'', type:'full-rest', tags:['纯休'],
     main:'彻底放松 🧘', express:'', workout:'Push 胸肩三头',
     result:'', rClass:'' },
@@ -467,7 +549,7 @@ const REST_DAYS = [
   ], outcome:'⚠️ 实际：补了自媒体底层逻辑学习', oc:'var(--orange)' },
   { date:14, wd:'周五', type:'half', emoji:'🟡', results:[
     '🏋️ <b>Legs 腿+核心</b>：深蹲4×15→保加利亚蹲→臀桥→静蹲→平板→登山跑','🤖 <b>下午</b>：RAG 入门 — Embedding + 向量搜索','🎤 <b>傍晚</b>：朗读 15 分钟','🌙 <b>晚上</b>：自由安排'
-  ], outcome:'', oc:'' },
+  ], outcome:'✅ 实际：RAG + 健身全完成', oc:'var(--green)' },
   { date:15, wd:'周六', type:'full', emoji:'🟢', results:[
     '彻底放松 🧘'
   ], outcome:'', oc:'' },
@@ -579,10 +661,11 @@ function renderDesktop() {
       let status = '';
       if (d.result) status += `<div class="status-line ${d.rClass}">${d.result}</div>`;
 
-      return `<td class="${cellClass.trim()}">
+      return `<td class="${cellClass.trim()}" data-date="${date}" onclick="openDetail(${date})">
         <div class="date-num">${date} ${tagsHtml}</div>
         ${weekTag}
         ${events}
+        <div class="card-progress" data-progress="${date}"></div>
         ${status}
       </td>`;
     }).join('');
@@ -655,11 +738,12 @@ function renderMobile() {
       }
 
       html += `
-      <div class="day-card ${cardClass.trim()}">
+      <div class="day-card ${cardClass.trim()}" data-date="${d.date}" onclick="openDetail(${d.date})">
         <div class="day-left"><div class="day-num">${d.date}</div><div class="day-weekday">${d.wd}</div></div>
         <div class="day-middle">
           <div class="day-tags">${tagsHtml}</div>
           <div class="day-lines">${lines.join('<span class="sep">|</span>')}</div>
+          <div class="card-progress" data-progress="${d.date}"></div>
           ${statusHtml}
         </div>
       </div>`;
@@ -712,12 +796,184 @@ function setTimestamp() {
   el.textContent = '📅 最后更新：' + s;
 }
 
+// ═══════════════ DAY DETAIL: 数据层 ═══════════════
+const STORE_KEY = 'august-plan-v1';
+let currentDate = null;
+
+function loadStore() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+function saveStore(s) { localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
+
+// 从计划里生成某天的默认任务（文本来自 DAYS，不存 localStorage，改计划不会丢勾选）
+function getDayTasks(d) {
+  const tasks = [];
+  if (d.main) tasks.push({ id: 'main', text: d.main });
+  if (d.workout) tasks.push({ id: 'workout', text: d.workout });
+  if (d.express) tasks.push({ id: 'express', text: d.express });
+  return tasks;
+}
+
+// 合并：默认任务 + localStorage 勾选状态 + 用户新增记录
+function getDayData(date) {
+  const d = DAYS.find(x => x.date === date) || {};
+  const day = loadStore()[date] || { done: {}, notes: [] };
+  const tasks = getDayTasks(d).map(t => ({ ...t, done: !!day.done[t.id] }));
+  const notes = day.notes || [];
+  return { d, tasks, notes };
+}
+
+function calcProgress(date) {
+  const { tasks, notes } = getDayData(date);
+  const all = [...tasks, ...notes];
+  return { done: all.filter(t => t.done).length, total: all.length };
+}
+
+function updateCardProgress(date) {
+  const { done, total } = calcProgress(date);
+  const txt = total > 0 ? `✓ ${done}/${total}` : '';
+  document.querySelectorAll(`[data-progress="${date}"]`).forEach(el => {
+    el.textContent = txt;
+    el.style.color = total > 0 && done === total ? 'var(--green)' : (done > 0 ? 'var(--orange)' : 'var(--text-secondary)');
+  });
+}
+
+// ═══════════════ DAY DETAIL: 渲染 ═══════════════
+function renderDetailTasks(tasks) {
+  const el = document.getElementById('modal-tasks');
+  if (!tasks.length) { el.innerHTML = '<div class="empty-hint">这天没有安排任务</div>'; return; }
+  el.innerHTML = tasks.map(t => `
+    <div class="task-item ${t.done ? 'done' : ''}" onclick="toggleTask(${currentDate}, '${t.id}')">
+      <div class="checkbox">${t.done ? '✓' : ''}</div>
+      <div class="task-text">${t.text}</div>
+    </div>`).join('');
+}
+
+function renderDetailNotes(notes) {
+  const el = document.getElementById('modal-notes');
+  if (!notes.length) { el.innerHTML = '<div class="empty-hint">还没有记录，下面加一条</div>'; return; }
+  el.innerHTML = notes.map(n => `
+    <div class="task-item ${n.done ? 'done' : ''}">
+      <div class="checkbox" onclick="toggleNote(${currentDate}, '${n.id}')">${n.done ? '✓' : ''}</div>
+      <div class="task-text" onclick="toggleNote(${currentDate}, '${n.id}')">${n.text}</div>
+      <div class="task-del" onclick="deleteNote(${currentDate}, '${n.id}')" title="删除">🗑</div>
+    </div>`).join('');
+}
+
+function updateModalProgress() {
+  const { done, total } = calcProgress(currentDate);
+  document.getElementById('modal-progress').style.width = (total > 0 ? Math.round(done / total * 100) : 0) + '%';
+}
+
+// ═══════════════ DAY DETAIL: 交互 ═══════════════
+function openDetail(date) {
+  currentDate = date;
+  const { d, tasks, notes } = getDayData(date);
+  const tagHtml = d.tags ? d.tags.map(t => `<span class="tag tag-main">${t}</span>`).join(' ') : '';
+  document.getElementById('modal-title').innerHTML = `${d.wd || ''} ${date}日 ${tagHtml}`;
+  renderDetailTasks(tasks);
+  renderDetailNotes(notes);
+  updateModalProgress();
+  document.getElementById('detail-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detail-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentDate = null;
+}
+
+function toggleTask(date, id) {
+  const store = loadStore();
+  if (!store[date]) store[date] = { done: {}, notes: [] };
+  store[date].done[id] = !store[date].done[id];
+  saveStore(store);
+  renderDetailTasks(getDayData(date).tasks);
+  updateModalProgress();
+  updateCardProgress(date);
+}
+
+function addNote() {
+  const input = document.getElementById('note-input');
+  const text = input.value.trim();
+  if (!text || currentDate === null) return;
+  const store = loadStore();
+  if (!store[currentDate]) store[currentDate] = { done: {}, notes: [] };
+  store[currentDate].notes.push({ id: 'n' + Date.now(), text, done: false });
+  saveStore(store);
+  input.value = '';
+  renderDetailNotes(store[currentDate].notes);
+  updateModalProgress();
+  updateCardProgress(currentDate);
+}
+
+function toggleNote(date, noteId) {
+  const store = loadStore();
+  const day = store[date];
+  if (!day) return;
+  const n = day.notes.find(x => x.id === noteId);
+  if (n) n.done = !n.done;
+  saveStore(store);
+  renderDetailNotes(day.notes);
+  updateModalProgress();
+  updateCardProgress(date);
+}
+
+function deleteNote(date, noteId) {
+  const store = loadStore();
+  const day = store[date];
+  if (!day) return;
+  day.notes = day.notes.filter(x => x.id !== noteId);
+  saveStore(store);
+  renderDetailNotes(day.notes);
+  updateModalProgress();
+  updateCardProgress(date);
+}
+
+// ═══════════════ 导出 / 导入 ═══════════════
+function exportData() {
+  const blob = new Blob([JSON.stringify(loadStore(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '八月计划记录-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data || typeof data !== 'object' || Array.isArray(data)) throw 0;
+      saveStore(data);
+      alert('✅ 导入成功');
+      if (currentDate !== null) openDetail(currentDate);
+      DAYS.forEach(d => updateCardProgress(d.date));
+    } catch(e) {
+      alert('❌ 文件格式不对，请选择导出的 JSON 文件');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// 点击遮罩关闭
+document.getElementById('detail-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeDetail();
+});
+
 // ═══════════════ INIT ═══════════════
 renderDesktop();
 renderMobile();
 renderRestCards();
 renderMilestoneCards();
 setTimestamp();
+DAYS.forEach(d => updateCardProgress(d.date));
 </script>
 
 </body>

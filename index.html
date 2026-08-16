@@ -455,7 +455,7 @@ footer .timestamp { color: var(--text-secondary); font-size: 11px; opacity: 0.6;
      DATA — 改计划只改这里
      ═══════════════════════════════════════════════ -->
 <script>
-const WEEKS = ['W1 搭架子', 'W2 启动 ⏸', 'W3 RAG+训练', '收尾周'];
+const WEEKS = ['W1 搭架子', 'W2 启动', 'W3 Agent进阶', '收尾周'];
 
 const DAYS = [
   // Week 1: 搭架子 ✅
@@ -488,31 +488,31 @@ const DAYS = [
   { date:12, wd:'周三', w:1, s:'done',
     tags:['AI'], main:'Prompt工程系统化 ✅', express:'', workout:'Push 胸肩三头',
     result:'✅ 10概念·Meta-Prompt·Push胸肩三头', rClass:'s-ok' },
-  { date:13, wd:'周四', w:1, s:'',
+  { date:13, wd:'周四', w:1, s:'done',
     tags:['AI'], main:'Prompt收尾 + RAG预习', express:'', workout:'Pull 背+二头',
-    result:'', rClass:'' },
+    result:'✅ 跨模型测试·反向集成·RAG预习', rClass:'s-ok' },
   { date:14, wd:'周五', w:1, s:'done', type:'half-rest', tags:['半休'],
     main:'RAG 入门', express:'🎤 朗读 15min', workout:'Legs 腿+核心',
     result:'✅ RAG全完成·bge语义+混合检索·健身Legs', rClass:'s-ok' },
-  { date:15, wd:'周六', w:1, s:'', type:'full-rest', tags:['纯休'],
-    main:'彻底放松 🧘', express:'', workout:'Push 胸肩三头',
-    result:'', rClass:'' },
+  { date:15, wd:'周六', w:1, s:'done', tags:['AI','RAG'],
+    main:'混合检索(RRF) + 掌厨语义搜 + 同义词映射', express:'', workout:'Push 胸肩三头',
+    result:'✅ RAG混合检索+掌厨语义搜+同义词映射', rClass:'s-ok' },
 
   // Week 3: RAG+训练
-  { date:16, wd:'周日', w:2, s:'',
-    tags:['RAG'], main:'Embedding + 向量数据库', express:'', workout:'Pull 背+二头',
-    result:'', rClass:'' },
+  { date:16, wd:'周日', w:2, s:'done',
+    tags:['RAG'], main:'Chunking + 课程体系同步 + 企业知识库', express:'', workout:'Pull 背+二头',
+    result:'✅ Chunking·kb-qa·bge·课程00-11全同步', rClass:'s-ok' },
   { date:17, wd:'周一', w:2, s:'',
-    tags:['RAG'], main:'Chunking + 召回策略', express:'', workout:'Legs 腿+核心',
+    tags:['Agent'], main:'NFC企业知识库接前端 + Agent进阶', express:'', workout:'Legs 腿+核心',
     result:'', rClass:'' },
   { date:18, wd:'周二', w:2, s:'',
-    tags:['RAG'], main:'实战：掌厨159菜谱接入', express:'', workout:'Push 胸肩三头',
+    tags:['Agent'], main:'ReAct 深入 + Plan-Execute 范式', express:'', workout:'Push 胸肩三头',
     result:'', rClass:'' },
   { date:19, wd:'周三', w:2, s:'',
-    tags:['RAG'], main:'实战：检索 + 重排序', express:'', workout:'Pull 背+二头',
+    tags:['Agent'], main:'Multi-Agent 多智能体范式', express:'', workout:'Pull 背+二头',
     result:'', rClass:'' },
   { date:20, wd:'周四', w:2, s:'',
-    tags:['RAG'], main:'收尾 + 企业知识库方案', express:'', workout:'Legs 腿+核心',
+    tags:['Agent'], main:'Agent 框架(LangChain/CrewAI/Dify)', express:'', workout:'Legs 腿+核心',
     result:'', rClass:'' },
   { date:21, wd:'周五', w:2, s:'', type:'half-rest', tags:['半休'],
     main:'综合练习', express:'🎤 朗读 15min', workout:'Push 胸肩三头',
@@ -552,7 +552,7 @@ const REST_DAYS = [
   ], outcome:'✅ 实际：RAG + 健身全完成', oc:'var(--green)' },
   { date:15, wd:'周六', type:'full', emoji:'🟢', results:[
     '彻底放松 🧘'
-  ], outcome:'', oc:'' },
+  ], outcome:'✅ 实际：超额做 RAG 混合检索 + 掌厨语义搜 + 同义词映射', oc:'var(--green)' },
   { date:21, wd:'周五', type:'half', emoji:'🟡', results:[
     '🏃 <b>健身</b>','📊 <b>下午</b>：整体复盘 + 规划九月学习计划','🎤 <b>傍晚</b>：朗读 15 分钟','🌙 <b>晚上</b>：自由安排'
   ], outcome:'', oc:'' },

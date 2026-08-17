@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>计划后台</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117; --card: #1a1d27; --border: #2a2d3a;
+  --text: #e1e4ed; --text-secondary: #8b8fa8;
+  --accent: #6c8cff; --accent-glow: rgba(108,140,255,0.15);
+  --green: #4ade80; --red: #f87171; --orange: #fb923c;
+  --radius: 10px;
+}
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6; max-width: 720px; margin: 0 auto; padding: 20px 14px 60px;
+}
+header { text-align: center; padding: 12px 0 20px; }
+header h1 { font-size: 24px; font-weight: 800; }
+header p { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+.card h2 { font-size: 15px; margin-bottom: 12px; }
+.field { margin-bottom: 10px; }
+.field label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.field input, .field textarea {
+  width: 100%; background: #0f1117; border: 1px solid var(--border); border-radius: 8px;
+  padding: 9px 12px; color: var(--text); font-size: 14px; outline: none; font-family: inherit;
+}
+.field input:focus, .field textarea:focus { border-color: var(--accent); }
+.field textarea { min-height: 90px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.5; }
+
+.mod { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.mod-head { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.mod-head input { width: 16px; height: 16px; accent-color: var(--accent); }
+.mod-head .name { font-size: 14px; font-weight: 600; }
+.mod-head .hint { font-size: 11px; color: var(--text-secondary); }
+.mod-body { display: none; margin-top: 8px; }
+.mod.on .mod-body { display: block; }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; position: sticky; bottom: 12px; }
+.actions button {
+  flex: 1; min-width: 100px; padding: 12px; border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.btn-save { background: var(--accent); color: #fff; }
+.btn-export { background: var(--green); color: #0f1117; }
+.btn-preview { background: var(--card); color: var(--text); border: 1px solid var(--border) !important; }
+.hint-tip { font-size: 12px; color: var(--text-secondary); margin-top: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗂 计划后台</h1>
+  <p>改完「保存草稿」→「预览」看效果，或「导出 JSON」归档到 plans/</p>
+</header>
+
+<div class="card">
+  <h2>📋 基本信息</h2>
+  <div class="field"><label>标题（显示在页面顶部）</label><input id="meta-title" placeholder="如：CPA 冲刺计划"></div>
+  <div class="field"><label>副标题</label><input id="meta-subtitle" placeholder="如：9月考试 · 每天 3 小时"></div>
+</div>
+
+<div class="card">
+  <h2>🧩 模块（勾选才显示，内容用 JSON 编辑）</h2>
+
+  <div class="mod" data-mod="banner">
+    <label class="mod-head"><input type="checkbox" class="mod-toggle"><span class="name">⏸️ 横幅</span><span class="hint">顶部公告</span></label>
+    <div class="mod-body"><textarea class="mod-json" placeholder='{"msg":"公告标题","sub":"副内容"}'></textarea></div>
+  </div>
+
+  <div class="mod" data-mod="diet">
+    <label class="mod-head"><input type="checkbox" class="mod-toggle"><span class="name">🍚 饮食清单</span><span class="hint">增肌/减脂餐</span></label>
+    <div class="mod-body"><textarea class="mod-json" placeholder='{"title":"每日饮食清单","note":"说明","items":[{"emoji":"🥚","label":"早餐","text":"内容"}],"footnote":"底部"}'></textarea></div>
+  </div>
+
+  <div class="mod" data-mod="dailyTemplate">
+    <label class="mod-head"><input type="checkbox" class="mod-toggle"><span class="name">⏰ 每日时间模板</span><span class="hint">固定作息</span></label>
+    <div class="mod-body"><textarea class="mod-json" placeholder='{"title":"每日时间模板","slots":[{"time":"21:10-22:10","label":"主线","note":"备注","type":"main"}]}'></textarea></div>
+  </div>
+
+  <div class="mod" data-mod="checklist">
+    <label class="mod-head"><input type="checkbox" class="mod-toggle"><span class="name">✅ 检查清单</span><span class="hint">目标清单</span></label>
+    <div class="mod-body"><textarea class="mod-json" placeholder='{"title":"完成后你该有的东西","items":[{"text":"一条","done":false}]}'></textarea></div>
+  </div>
+
+  <div class="mod" data-mod="footer">
+    <label class="mod-head"><input type="checkbox" class="mod-toggle"><span class="name">📄 footer</span><span class="hint">底部一句话</span></label>
+    <div class="mod-body"><textarea class="mod-json" placeholder='{"lines":["第一句","第二句"]}'></textarea></div>
+  </div>
+
+  <p class="hint-tip">💡 JSON 不会写没关系：先勾选模块，点「保存草稿」会用默认内容填充；日历部分（每天的时段/标签）请到主页面点某天编辑。</p>
+</div>
+
+<div class="actions">
+  <button class="btn-save" onclick="saveDraft()">💾 保存草稿</button>
+  <button class="btn-preview" onclick="preview()">👁 预览</button>
+  <button class="btn-export" onclick="exportJson()">⬇️ 导出 JSON</button>
+</div>
+
+<script src="data.js"></script>
+<script>
+const DRAFT_KEY = 'plan-admin-draft';
+const MODS = ['banner', 'diet', 'dailyTemplate', 'checklist', 'footer'];
+let plan = null;
+
+function loadPlan() {
+  try {
+    const draft = localStorage.getItem(DRAFT_KEY);
+    if (draft) plan = JSON.parse(draft);
+  } catch (e) {}
+  if (!plan) plan = JSON.parse(JSON.stringify(window.PLAN_DATA));
+  renderForm();
+}
+
+function renderForm() {
+  document.getElementById('meta-title').value = (plan.meta && plan.meta.title) || '';
+  document.getElementById('meta-subtitle').value = (plan.meta && plan.meta.subtitle) || '';
+  MODS.forEach(m => {
+    const data = plan.modules && plan.modules[m];
+    const box = document.querySelector(`.mod[data-mod="${m}"]`);
+    const toggle = box.querySelector('.mod-toggle');
+    const json = box.querySelector('.mod-json');
+    toggle.checked = !!data;
+    // 勾选但没内容时，用默认数据填充
+    if (toggle.checked) json.value = JSON.stringify(data || (window.PLAN_DATA.modules && window.PLAN_DATA.modules[m]) || {}, null, 2);
+    else json.value = '';
+    syncMod(box, toggle.checked);
+  });
+}
+
+function syncMod(box, on) {
+  box.classList.toggle('on', on);
+}
+
+document.querySelectorAll('.mod-toggle').forEach(t => {
+  t.addEventListener('change', () => {
+    const box = t.closest('.mod');
+    syncMod(box, t.checked);
+    if (t.checked && !box.querySelector('.mod-json').value) {
+      const m = box.dataset.mod;
+      box.querySelector('.mod-json').value = JSON.stringify((window.PLAN_DATA.modules && window.PLAN_DATA.modules[m]) || {}, null, 2);
+    }
+  });
+});
+
+function buildPlan() {
+  const modules = {};
+  MODS.forEach(m => {
+    const box = document.querySelector(`.mod[data-mod="${m}"]`);
+    if (!box.querySelector('.mod-toggle').checked) return;
+    try {
+      modules[m] = JSON.parse(box.querySelector('.mod-json').value || '{}');
+    } catch (e) {
+      alert(`模块「${m}」的 JSON 格式有误，已跳过：\n` + e.message);
+    }
+  });
+  return {
+    meta: { title: document.getElementById('meta-title').value.trim(), subtitle: document.getElementById('meta-subtitle').value.trim() },
+    weeks: plan.weeks || window.PLAN_DATA.weeks || [],
+    days: plan.days || window.PLAN_DATA.days || [],
+    restDays: plan.restDays || window.PLAN_DATA.restDays || [],
+    milestones: plan.milestones || window.PLAN_DATA.milestones || [],
+    modules,
+  };
+}
+
+function saveDraft() {
+  plan = buildPlan();
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(plan));
+  alert('✅ 已保存草稿（打开 index.html 即可看到效果）');
+}
+
+function preview() {
+  plan = buildPlan();
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(plan));
+  window.open('index.html', '_blank');
+}
+
+function exportJson() {
+  const data = buildPlan();
+  const name = (data.meta.title || 'plan').replace(/[\\/:*?"<>|]/g, '');
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+loadPlan();
+</script>
+</body>
+</html>

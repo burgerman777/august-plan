@@ -1,0 +1,63 @@
+{
+  "weeks": ["W1 打基础", "W2 强化", "W3 冲刺", "复盘周"],
+  "days": [
+    { "date": 3,  "wd": "周一", "w": 0, "s": "done",
+      "tags": ["英语"],
+      "slots": [
+        { "time": "19:00-20:30", "text": "单词 200 + 长难句 5 句", "type": "main" },
+        { "time": "20:30-21:00", "text": "精读 1 篇外刊", "type": "read" }
+      ],
+      "result": "✅ 完成", "rClass": "s-ok" },
+    { "date": 4,  "wd": "周二", "w": 0, "s": "done",
+      "tags": ["数学"],
+      "slots": [
+        { "time": "19:00-21:00", "text": "高数极限 + 微分 30 题", "type": "main" }
+      ],
+      "result": "✅ 完成", "rClass": "s-ok" },
+    { "date": 5,  "wd": "周三", "w": 0, "s": "done",
+      "tags": ["专业课"],
+      "slots": [
+        { "time": "19:00-21:00", "text": "数据结构 第 3 章 + 笔记", "type": "main" }
+      ],
+      "result": "⚠️ 只完成一半", "rClass": "s-warn" },
+    { "date": 6,  "wd": "周四", "w": 0, "s": "",
+      "tags": ["英语"],
+      "slots": [
+        { "time": "19:00-21:00", "text": "阅读真题 2 篇 + 精读", "type": "main" },
+        { "time": "21:00-21:30", "text": "错题复盘", "type": "express" }
+      ],
+      "result": "", "rClass": "" },
+    { "date": 7,  "wd": "周五", "w": 0, "s": "",
+      "tags": ["数学"],
+      "slots": [
+        { "time": "19:00-21:00", "text": "线代矩阵 + 行列式 20 题", "type": "main" }
+      ],
+      "result": "", "rClass": "" },
+    { "date": 8,  "wd": "周六", "w": 0, "s": "", "type": "half-rest",
+      "tags": ["半休"],
+      "slots": [
+        { "time": "", "text": "复盘错题 + 运动 1 小时", "type": "main" }
+      ],
+      "result": "", "rClass": "" },
+    { "date": 9,  "wd": "周日", "w": 0, "s": "", "type": "full-rest",
+      "tags": ["纯休"],
+      "slots": [
+        { "time": "", "text": "彻底放松 🧘", "type": "main" }
+      ],
+      "result": "", "rClass": "" }
+  ],
+  "restDays": [
+    { "date": 8, "wd": "周六", "type": "half", "emoji": "🟡",
+      "results": ["🏃 <b>运动 1 小时</b>", "📖 <b>上午</b>：复盘本周错题", "🌙 <b>晚上</b>：自由安排"],
+      "outcome": "", "oc": "" },
+    { "date": 9, "wd": "周日", "type": "full", "emoji": "🟢",
+      "results": ["彻底放松，想干嘛干嘛"],
+      "outcome": "", "oc": "" }
+  ],
+  "milestones": [
+    { "emoji": "🎯", "dt": "8/3 一", "tags": "", "cls": "rest",
+      "lines": ["<b>打基础阶段启动</b>", "英语 + 数学 + 专业课三线并行", "<span style=\"color:var(--green)\">✅ 已开始</span>"] },
+    { "emoji": "📅", "dt": "8/20", "tags": "", "cls": "nfc",
+      "lines": ["<b>进入强化阶段</b>", "真题为主，知识点查漏补缺"] }
+  ]
+}

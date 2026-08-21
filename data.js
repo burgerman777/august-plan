@@ -123,13 +123,13 @@ window.PLAN_DATA = {
         { time:'', text:'Legs 腿+核心（未练）', type:'workout' },
       ],
       result:'✅ 后端API服务化Day1·17号课程·公网穿透', rClass:'s-ok' },
-    { date:21, wd:'周五', w:2, s:'', type:'half-rest', tags:['半休'],
+    { date:21, wd:'周五', w:2, s:'done', type:'half-rest', tags:['复盘','部署'],
       slots:[
-        { time:'21:10-22:10', text:'综合练习', type:'main' },
-        { time:'', text:'Push 胸肩三头', type:'workout' },
-        { time:'22:10-22:40', text:'🎤 朗读 15min', type:'express' },
+        { time:'21:10-22:10', text:'月度复盘 + 后端部署检测(本地+公网)', type:'main' },
+        { time:'', text:'Legs 腿+核心(补) + Push 胸肩三头', type:'workout' },
+        { time:'22:10-22:40', text:'名词库完整版 + git 三把锁上锁', type:'express' },
       ],
-      result:'', rClass:'' },
+      result:'✅ 月度复盘·部署测通·名词库·git上锁', rClass:'s-ok' },
     { date:22, wd:'周六', w:2, s:'', type:'full-rest', tags:['纯休'],
       slots:[
         { time:'', text:'彻底放松 🧘', type:'main' },
@@ -183,8 +183,8 @@ window.PLAN_DATA = {
       '彻底放松 🧘'
     ], outcome:'✅ 实际：超额做 RAG 混合检索 + 掌厨语义搜 + 同义词映射', oc:'var(--green)' },
     { date:21, wd:'周五', type:'half', emoji:'🟡', results:[
-      '🏃 <b>健身</b>','📊 <b>下午</b>：整体复盘 + 规划九月学习计划','🎤 <b>傍晚</b>：朗读 15 分钟','🌙 <b>晚上</b>：自由安排'
-    ], outcome:'', oc:'' },
+      '🏃 <b>健身</b>：Legs(补) + Push 胸肩三头','📊 <b>下午</b>：整体复盘 + 能力诊断','🎤 <b>傍晚</b>：名词库 + git 上锁','🌙 <b>晚上</b>：自由安排'
+    ], outcome:'✅ 实际：月度复盘 + 部署检测 + 名词库 + git 上锁', oc:'var(--green)' },
     { date:22, wd:'周六', type:'full', emoji:'🟢', results:[
       '彻底放松 🧘'
     ], outcome:'', oc:'' },

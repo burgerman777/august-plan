@@ -239,6 +239,7 @@ window.PLAN_DATA = {
         '💡 累了、加班了、状态不好 → <b>做 30 分钟就收工</b>，比不做强一百倍。',
         '别让完美主义杀死行动力。',
         '<span style="color:var(--green);">✅ Prompt 工程完成 · RAG 已完成 · Agent 进阶完成（ReAct→Plan-Execute→Multi-Agent→CrewAI） · 后端 API 服务化（FastAPI+公网部署） · 居家训练已启动</span>',
+        '<span style="color:var(--accent);">🎯 开学后精进主线：Memory → Eval → MCP → 企业级 RAG</span>',
         '<a href="训练计划.md" style="color:var(--accent);">📋 完整训练计划（食堂饮食 + 45min 动作表）</a>',
       ],
     },

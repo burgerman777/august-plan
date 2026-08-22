@@ -137,12 +137,12 @@ window.PLAN_DATA = {
       result:'', rClass:'' },
 
     // 收尾周
-    { date:23, wd:'周日', w:3, s:'', tags:['项目'],
+    { date:23, wd:'周日', w:3, s:'done', tags:['考核','Memory'],
       slots:[
-        { time:'21:10-22:10', text:'项目打磨：掌厨/NFC/日历', type:'main' },
-        { time:'', text:'Pull 背+二头', type:'workout' },
+        { time:'21:10-22:10', text:'第一关考核：Q1 架构+软技能 · Q2 Prompt', type:'main' },
+        { time:'22:10-22:40', text:'补多轮对话缺口 → 笔记 + demo 落地', type:'express' },
       ],
-      result:'', rClass:'' },
+      result:'✅ 第一关Q1Q2·多轮对话·小红书模板', rClass:'s-ok' },
     { date:24, wd:'周一', w:3, s:'', tags:['项目'],
       slots:[
         { time:'21:10-22:10', text:'项目打磨：作品整理', type:'main' },

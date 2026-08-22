@@ -130,19 +130,20 @@ window.PLAN_DATA = {
         { time:'22:10-22:40', text:'名词库完整版 + git 三把锁上锁', type:'express' },
       ],
       result:'✅ 月度复盘·部署测通·名词库·git上锁', rClass:'s-ok' },
-    { date:22, wd:'周六', w:2, s:'', type:'full-rest', tags:['纯休'],
-      slots:[
-        { time:'', text:'彻底放松 🧘', type:'main' },
-      ],
-      result:'', rClass:'' },
-
-    // 收尾周
-    { date:23, wd:'周日', w:3, s:'done', tags:['考核','Memory'],
+    { date:22, wd:'周六', w:2, s:'done', tags:['考核','Memory'],
       slots:[
         { time:'21:10-22:10', text:'第一关考核：Q1 架构+软技能 · Q2 Prompt', type:'main' },
         { time:'22:10-22:40', text:'补多轮对话缺口 → 笔记 + demo 落地', type:'express' },
       ],
       result:'✅ 第一关Q1Q2·多轮对话·小红书模板', rClass:'s-ok' },
+
+    // 收尾周
+    { date:23, wd:'周日', w:3, s:'', tags:['项目'],
+      slots:[
+        { time:'21:10-22:10', text:'项目打磨：掌厨/NFC/日历', type:'main' },
+        { time:'', text:'Pull 背+二头', type:'workout' },
+      ],
+      result:'', rClass:'' },
     { date:24, wd:'周一', w:3, s:'', tags:['项目'],
       slots:[
         { time:'21:10-22:10', text:'项目打磨：作品整理', type:'main' },
@@ -187,7 +188,7 @@ window.PLAN_DATA = {
     ], outcome:'✅ 实际：月度复盘 + 部署检测 + 名词库 + git 上锁', oc:'var(--green)' },
     { date:22, wd:'周六', type:'full', emoji:'🟢', results:[
       '彻底放松 🧘'
-    ], outcome:'', oc:'' },
+    ], outcome:'✅ 实际：第一关考核 Day1 + 补多轮对话缺口', oc:'var(--green)' },
   ],
 
   // ═══════════════ MILESTONE CARDS ═══════════════
